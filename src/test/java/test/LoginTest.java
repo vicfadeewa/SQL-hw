@@ -29,7 +29,7 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Позитивный тест")
+    @DisplayName("successfulLoginValidationTest")
     void shouldSuccessfulLogin() {
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
@@ -39,15 +39,15 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Неверно указано имя пользователя")
-    void shouldErrorInvalideLogin() {
+    @DisplayName("testInvalidUsernameLogin")
+    void shouldErrorInvalidLogin() {
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
     }
 
     @Test
-    @DisplayName("Неверно указан код верификации")
+    @DisplayName("verifyInvalidVerificationCode")
     void shouldInvalidCodes() {
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
@@ -58,7 +58,7 @@ class LoginTest {
     }
 
     @Test
-    @DisplayName("Ввод неправильного пароля 3 раза")
+    @DisplayName("testThreeFailedLogin")
     void shouldLockAfterThreeUnsuccessfulPasswords() {
         var authInfo = DataHelper.generateRandomUser();
         var verificationPage = loginPage.validLogin(authInfo);
